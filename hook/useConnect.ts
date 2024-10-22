@@ -1,11 +1,8 @@
+ const useDataSDK = require( "./useDataSDK")
  
-import { useEffect, useState } from 'react'
-import useDataSDK from './useDataSDK'
-import { sendMessageToParent, viewExternal } from '../utils/func'
-import PasskeySDK from '../common/controller'
-import { TYPE_METHOD_DAPP } from '../common/constance'
+ 
 
-export const useConnect = () => {
+const useConnect = () => {
   const [error, setError] = useState(null)
   const { data, setData } = useDataSDK()
   const [loading, setLoading] = useState(false)

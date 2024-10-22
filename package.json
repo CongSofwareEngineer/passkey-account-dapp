@@ -1,10 +1,11 @@
 {
   "name": "passkey-account-dapp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Provider to connect account in dapp",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,12 @@
   "homepage": "https://github.com/CongSofwareEngineer/passkey-account-dapp#readme",
   "dependencies": {
     "react": "^18.3.1"
-  }
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.8",
+    "typescript": "^5.6.3"
+  },
+  "files": [
+    "dist/**/*"
+  ]
 }

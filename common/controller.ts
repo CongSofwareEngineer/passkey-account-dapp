@@ -1,5 +1,7 @@
 import { removeDataLocal, saveDataLocal } from "../utils/func";
 
+ 
+
 export type typeConnectClient = {
 	address?: string;
 	groupSlug?: string;
@@ -19,6 +21,7 @@ class PasskeySDK {
 		}
 	) {
 		connect = connectClient;
+ 
 		saveDataLocal("data-dapp", connectClient);
 	}
 

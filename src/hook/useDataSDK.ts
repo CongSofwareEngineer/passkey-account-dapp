@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import PasskeySDK, { typeConnectClient } from '../common/controller'
  
-const useDataSDK = () => {
+ 
+export const useDataSDK = () => {
   const [data, setData] = useState<typeConnectClient>(null)
   useEffect(() => {
     setData(PasskeySDK.getConnect())
@@ -10,4 +11,3 @@ const useDataSDK = () => {
   return { data, setData }
 }
 
-export default useDataSDK

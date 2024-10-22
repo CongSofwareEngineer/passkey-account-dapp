@@ -1,6 +1,7 @@
-import { TYPE_METHOD_DAPP } from "../common/constance";
-import useDataSDK from "./useDataSDK"
+ 
 import { useState, useEffect } from 'react';
+import {useDataSDK} from './useDataSDK';
+import { TYPE_METHOD_DAPP } from '../common/constance';
 
  
 export const useSendTransactions = () => {
@@ -17,6 +18,8 @@ export const useSendTransactions = () => {
     data: '0x'
   }) => {
     setLoading(true)
+    setLoading(null)
+    setHash(null)
     const {
       amount = 0,
       to = '0x',

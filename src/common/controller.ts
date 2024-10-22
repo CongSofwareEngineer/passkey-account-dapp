@@ -1,7 +1,5 @@
 import { removeDataLocal, saveDataLocal } from "../utils/func";
 
- 
-
 export type typeConnectClient = {
 	address?: string;
 	groupSlug?: string;
@@ -10,6 +8,7 @@ export type typeConnectClient = {
 } | null;
 
 let connect: typeConnectClient = null;
+let isDuplicateDomain=false
 let urlActiveAccount =
 	"https://pass.w3w.app/activate-by-passkey/egglegamewallet";
 class PasskeySDK {
@@ -40,6 +39,14 @@ class PasskeySDK {
 
 	static getUrlActiveAccount() {
 		return urlActiveAccount;
+	}
+
+	static setIsDuplicateDomain(value: boolean) {
+		isDuplicateDomain = value;
+	}
+
+	static getIsDuplicateDomain() {
+		return isDuplicateDomain;
 	}
 }
 export default PasskeySDK;

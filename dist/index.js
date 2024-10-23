@@ -1,26 +1,24 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.PasskeySDK = exports.useSendTransactions = exports.useDataSDK = exports.useConnect = void 0;
-const react_1 = require("react");
-const func_1 = require("./utils/func");
-const controller_1 = require("./common/controller");
-exports.PasskeySDK = controller_1.default;
-const useConnect_1 = require("./hook/useConnect");
-Object.defineProperty(exports, "useConnect", { enumerable: true, get: function () { return useConnect_1.useConnect; } });
-const useDataSDK_1 = require("./hook/useDataSDK");
-Object.defineProperty(exports, "useDataSDK", { enumerable: true, get: function () { return useDataSDK_1.useDataSDK; } });
-const useSendTransactions_1 = require("./hook/useSendTransactions");
-Object.defineProperty(exports, "useSendTransactions", { enumerable: true, get: function () { return useSendTransactions_1.useSendTransactions; } });
-const DappPasskeySDK = ({ children, urlActiveAccount = "https://pass.w3w.app/activate-by-passkey/egglegamewallet", isDuplicateDomain = false }) => {
-    (0, react_1.useLayoutEffect)(() => {
-        const dataLocal = (0, func_1.getDataLocal)("data-dapp");
-        if (dataLocal) {
-            controller_1.default.createConnect(dataLocal);
-        }
-        controller_1.default.setUrlActiveAccount(urlActiveAccount);
-        controller_1.default.setIsDuplicateDomain(isDuplicateDomain);
-    }, []);
-    return children;
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
-exports.default = DappPasskeySDK;
+Object.defineProperty(exports, "__esModule", { value: true });
+const Provider_1 = require("./Provider");
+exports.default = Provider_1.default;
+__exportStar(require("./hook/useConnect"), exports);
+__exportStar(require("./hook/useSendTransactions"), exports);
+__exportStar(require("./hook/useDataSDK"), exports);
+__exportStar(require("./common/constance"), exports);
+__exportStar(require("./common/controller"), exports);
 //# sourceMappingURL=index.js.map

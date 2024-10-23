@@ -1,10 +1,12 @@
 export type typeConnectClient = {
     address?: string;
     groupSlug?: string;
-    moreData: any;
+    moreData?: any;
     chaiId?: string | Number;
 } | null;
 declare class PasskeySDK {
+    static urlActiveAccount: string;
+    static isDuplicateDomain: boolean;
     static createConnect(connectClient?: {
         address: string;
         groupSlug: string;
@@ -12,9 +14,5 @@ declare class PasskeySDK {
     }): void;
     static getConnect(): typeConnectClient;
     static logout(): void;
-    static setUrlActiveAccount(url: string): void;
-    static getUrlActiveAccount(): string;
-    static setIsDuplicateDomain(value: boolean): void;
-    static getIsDuplicateDomain(): boolean;
 }
 export default PasskeySDK;

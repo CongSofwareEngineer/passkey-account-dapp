@@ -19,12 +19,12 @@ export const useConnect = () => {
 	const connect = () => {
 		try {
 			setLoading(true);
-      setError(null)
+			setError(null);
 			if (
 				window.location.href.includes(window.parent?.origin) &&
-				!PasskeySDK.getIsDuplicateDomain()
+				!PasskeySDK.isDuplicateDomain
 			) {
-				viewExternal(PasskeySDK.getUrlActiveAccount());
+				viewExternal(PasskeySDK.urlActiveAccount);
 			} else {
 				sendMessageToParent({
 					id: TYPE_METHOD_DAPP.connect,
@@ -45,10 +45,9 @@ export const useConnect = () => {
 		setData(null);
 	};
 
-	const receiveDAPPMessage = async (event:any) => {
+	const receiveDAPPMessage = async (event: any) => {
 		const dataParent = event.data;
 		if (TYPE_METHOD_DAPP.connect === dataParent?.id) {
-			console.log({ dataParent });
 			setLoading(false);
 			if (!dataParent?.error) {
 				setError(null);
@@ -56,8 +55,12 @@ export const useConnect = () => {
 					...data,
 					...dataParent.result,
 				};
-				PasskeySDK.createConnect(dataLocal);
-				setData(dataLocal);
+				if (Object.keys(dataLocal).length > 0) {
+					PasskeySDK.createConnect(dataLocal);
+					setData(dataLocal);
+				} else {
+					viewExternal(PasskeySDK.urlActiveAccount);
+				}
 			} else {
 				setError(dataParent?.error);
 			}

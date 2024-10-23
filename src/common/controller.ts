@@ -3,15 +3,17 @@ import { removeDataLocal, saveDataLocal } from "../utils/func";
 export type typeConnectClient = {
 	address?: string;
 	groupSlug?: string;
-	moreData: any;
+	moreData?: any;
 	chaiId?: string | Number;
 } | null;
 
 let connect: typeConnectClient = null;
-let isDuplicateDomain=false
-let urlActiveAccount =
-	"https://pass.w3w.app/activate-by-passkey/egglegamewallet";
+
 class PasskeySDK {
+	static urlActiveAccount =
+		"https://pass.w3w.app/activate-by-passkey/egglegamewallet";
+	static isDuplicateDomain = false;
+
 	static createConnect(
 		connectClient = {
 			address: "",
@@ -20,7 +22,7 @@ class PasskeySDK {
 		}
 	) {
 		connect = connectClient;
- 
+
 		saveDataLocal("data-dapp", connectClient);
 	}
 
@@ -31,22 +33,6 @@ class PasskeySDK {
 	static logout() {
 		connect = null;
 		removeDataLocal("data-dapp");
-	}
-
-	static setUrlActiveAccount(url: string) {
-		urlActiveAccount = url;
-	}
-
-	static getUrlActiveAccount() {
-		return urlActiveAccount;
-	}
-
-	static setIsDuplicateDomain(value: boolean) {
-		isDuplicateDomain = value;
-	}
-
-	static getIsDuplicateDomain() {
-		return isDuplicateDomain;
 	}
 }
 export default PasskeySDK;

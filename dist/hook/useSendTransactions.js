@@ -17,21 +17,20 @@ const useSendTransactions = () => {
     const { data: dataConnect } = (0, useDataSDK_1.useDataSDK)();
     const [error, setError] = (0, react_1.useState)(null);
     const [loading, setLoading] = (0, react_1.useState)(false);
-    const [hash, setHash] = (0, react_1.useState)('');
+    const [hash, setHash] = (0, react_1.useState)("");
     const sendTransactions = (...args_1) => __awaiter(void 0, [...args_1], void 0, function* (rawData = {
         amount: 0,
-        to: '0x',
+        to: "0x",
         chainId: 137,
-        value: '0x',
-        data: '0x'
+        value: "0x",
+        data: "0x",
     }) {
         setLoading(true);
-        setLoading(null);
+        setError(null);
         setHash(null);
-        const { amount = 0, to = '0x', chainId = (dataConnect === null || dataConnect === void 0 ? void 0 : dataConnect.chainId) || 137, value = '0x', data = '0x' } = rawData;
-        console.log({ rawData });
+        const { amount = 0, to = "0x", chainId = (dataConnect === null || dataConnect === void 0 ? void 0 : dataConnect.chaiId) || 137, value = "0x", data = "0x", } = rawData;
         window.parent.postMessage({
-            jsonrpc: '2.0',
+            jsonrpc: "2.0",
             id: constance_1.TYPE_METHOD_DAPP.ETH_SEND_TRANSACTION,
             data: {
                 rawTransactions: {
@@ -39,38 +38,35 @@ const useSendTransactions = () => {
                     to,
                     chainId,
                     value,
-                    data
-                }
-            }
-        }, '*');
+                    data,
+                },
+            },
+        }, "*");
     });
     const receiveDAPPMessage = (event) => __awaiter(void 0, void 0, void 0, function* () {
         var _a;
         const dataParent = event.data;
-        if (dataParent === null || dataParent === void 0 ? void 0 : dataParent.id) {
-            console.log({ dataParent });
+        if (constance_1.TYPE_METHOD_DAPP.ETH_SEND_TRANSACTION === (dataParent === null || dataParent === void 0 ? void 0 : dataParent.id)) {
             setLoading(false);
-        }
-        if (constance_1.TYPE_METHOD_DAPP.ETH_SEND_TRANSACTION === dataParent.id) {
-            if (!(dataParent === null || dataParent === void 0 ? void 0 : dataParent.error)) {
-                setHash((_a = dataParent.result) === null || _a === void 0 ? void 0 : _a.hash);
+            if (dataParent === null || dataParent === void 0 ? void 0 : dataParent.error) {
+                setError(dataParent === null || dataParent === void 0 ? void 0 : dataParent.error);
             }
             else {
-                setError(dataParent === null || dataParent === void 0 ? void 0 : dataParent.error);
+                setHash((_a = dataParent.result) === null || _a === void 0 ? void 0 : _a.hash);
             }
         }
     });
     (0, react_1.useEffect)(() => {
-        window.addEventListener('message', receiveDAPPMessage, false);
+        window.addEventListener("message", receiveDAPPMessage, false);
         return () => {
-            window.removeEventListener('message', receiveDAPPMessage, false);
+            window.removeEventListener("message", receiveDAPPMessage, false);
         };
     }, []);
     return {
         data: hash,
         error,
         loading,
-        sendTransactions
+        sendTransactions,
     };
 };
 exports.useSendTransactions = useSendTransactions;

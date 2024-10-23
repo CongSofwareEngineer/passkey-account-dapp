@@ -1,4 +1,5 @@
+import { typeConnectClient } from "../common/controller";
 export declare const useDataSDK: () => {
-    data: any;
-    setData: any;
+    data: typeConnectClient;
+    setData: (param: typeConnectClient) => void;
 };

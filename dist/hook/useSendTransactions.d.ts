@@ -1,12 +1,14 @@
-export declare const useSendTransactions: () => {
-    data: any;
-    error: any;
-    loading: any;
-    sendTransactions: (rawData?: {
-        amount: number;
-        to: string;
-        chainId: number;
-        value: string;
-        data: string;
-    }) => Promise<void>;
+type typeRawData = {
+    amount: number;
+    to: string;
+    chainId: number;
+    value: string;
+    data: string;
 };
+export declare const useSendTransactions: () => {
+    data: string;
+    error: any;
+    loading: boolean;
+    sendTransactions: (param: typeRawData) => Promise<void>;
+};
+export {};

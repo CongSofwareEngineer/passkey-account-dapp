@@ -1,11 +1,7 @@
-import PasskeySDK from "./common/controller";
-import { useConnect } from './hook/useConnect';
-import { useDataSDK } from './hook/useDataSDK';
-import { useSendTransactions } from './hook/useSendTransactions';
-declare const DappPasskeySDK: ({ children, urlActiveAccount, isDuplicateDomain }: {
-    children: any;
-    urlActiveAccount?: string;
-    isDuplicateDomain?: false;
-}) => any;
-export default DappPasskeySDK;
-export { useConnect, useDataSDK, useSendTransactions, PasskeySDK };
+import ProviderDapp from './Provider';
+export default ProviderDapp;
+export * from './hook/useConnect';
+export * from './hook/useSendTransactions';
+export * from './hook/useDataSDK';
+export * from './common/constance';
+export * from './common/controller';

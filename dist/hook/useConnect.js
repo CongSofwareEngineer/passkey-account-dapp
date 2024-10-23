@@ -31,8 +31,8 @@ const useConnect = () => {
             setLoading(true);
             setError(null);
             if (window.location.href.includes((_a = window.parent) === null || _a === void 0 ? void 0 : _a.origin) &&
-                !controller_1.default.getIsDuplicateDomain()) {
-                (0, func_1.viewExternal)(controller_1.default.getUrlActiveAccount());
+                !controller_1.default.isDuplicateDomain) {
+                (0, func_1.viewExternal)(controller_1.default.urlActiveAccount);
             }
             else {
                 (0, func_1.sendMessageToParent)({
@@ -56,13 +56,17 @@ const useConnect = () => {
     const receiveDAPPMessage = (event) => __awaiter(void 0, void 0, void 0, function* () {
         const dataParent = event.data;
         if (constance_1.TYPE_METHOD_DAPP.connect === (dataParent === null || dataParent === void 0 ? void 0 : dataParent.id)) {
-            console.log({ dataParent });
             setLoading(false);
             if (!(dataParent === null || dataParent === void 0 ? void 0 : dataParent.error)) {
                 setError(null);
                 const dataLocal = Object.assign(Object.assign({}, data), dataParent.result);
-                controller_1.default.createConnect(dataLocal);
-                setData(dataLocal);
+                if (Object.keys(dataLocal).length > 0) {
+                    controller_1.default.createConnect(dataLocal);
+                    setData(dataLocal);
+                }
+                else {
+                    (0, func_1.viewExternal)(controller_1.default.urlActiveAccount);
+                }
             }
             else {
                 setError(dataParent === null || dataParent === void 0 ? void 0 : dataParent.error);

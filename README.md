@@ -39,18 +39,18 @@ const LayoutProvider = () => {
 import { useConnect, TYPE_ERROR_DAPP, useSendTransactions, TYPE_METHOD_DAPP } from "passkey-account-dapp";
 
 const ExampleDapp = () => {
-	//code ...
-	const [chainId, setChainId] = useState(137);
+  //code ...
+  const [chainId, setChainId] = useState(137);
 
-	const { connect, data, error, logout, isConnected ,loading: loadingConnect} = useConnect();
-	const {
-		sendTransactions,
-		error: errorSendToken,
-		data: hashTx,
+  const { connect, data, error, logout, isConnected ,loading: loadingConnect} = useConnect();
+  const {
+    sendTransactions,
+    error: errorSendToken,
+    data: hashTx,
     loading: loadingSendTx
-	} = useSendTransactions(chainId);
+  } = useSendTransactions(chainId);
 
-	//code....
+  //code....
 
   const handleSend = (second) => {
     //code....
